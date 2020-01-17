@@ -1,19 +1,30 @@
 ﻿
 @using Movies.Domain.Entities
+@using Movies.Models
+@using Movies.HtmlHelpers
+@model MoviesListViewModel
 
 @{
     ViewBag.Title = "Фильмы";
 }
-
-@foreach (var p in @Model.Movies)
-{
-    <div>
-        <h3>@p.Name</h3>
-        <p>@p.Description</p>
-        <h4>@p.Link</h4>
+<div class="container">
+    <div class="row">
+        @foreach (var p in @Model.Movies)
+        {
+            <div class="col-lg-6 rounded shadow-sm my-4">
+                @Html.YoutubeBlock(@p.Link)
+                <div style="min-height:200px">
+                    <h3>@p.Name</h3>
+                    <p>@p.Description</p>
+                </div>
+            </div>
+        }
     </div>
-}
 
-<div>
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    <div class="row">
+        <div>
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory }))
+        </div>
+    </div>
 </div>
+

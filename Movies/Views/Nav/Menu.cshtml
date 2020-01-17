@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+<ul class="navbar-nav mr-auto mt-2 mt-lg-0"">
+    @Html.ActionLink("Домой", "List", "Movie", null,
+        new { @class = "navbar-brand" })
+
+    @foreach (var link in Model)
+    {
+        <li class="nav-item">
+            @Html.RouteLink(
+                link,
+                new {
+                    controller = "Movie",
+                    action = "List",
+                    category = link,
+                    page = 1
+                },
+                new {
+                    @class = "nav-link " + (link == ViewBag.SelectedCategory ? " text-dark font-weight-bold" : "")
+                }
+            )
+        </li>
+    }
+</ul>

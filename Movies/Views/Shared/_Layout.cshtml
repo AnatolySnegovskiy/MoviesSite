@@ -8,7 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        @Html.Action("Menu", "Nav")
+    </nav>
+
+    <div class="container">
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/jquery")

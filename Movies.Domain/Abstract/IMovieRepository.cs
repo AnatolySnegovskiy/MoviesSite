@@ -6,5 +6,7 @@ namespace Movies.Domain.Abstract
     public interface IMovieRepository
     {
         IEnumerable<Movie> Movies { get; }
+        void SaveGame(Movie movie);
+        Movie DeleteGame(int movieId);
     }
 }
